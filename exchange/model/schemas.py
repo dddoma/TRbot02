@@ -13,6 +13,8 @@ STOCK_LITERAL = Literal[
     "NASDAQ",
     "NYSE",
     "AMEX",
+    "CME",
+    "CME_MINI",
 ]
 
 
@@ -26,9 +28,11 @@ EXCHANGE_LITERAL = Literal[
     "NASDAQ",
     "NYSE",
     "AMEX",
+    "CME",
+    "CME_MINI",
 ]
 
-QUOTE_LITERAL = Literal["USDT", "USDT.P", "USDTPERP", "BUSD", "BUSD.P", "BUSDPERP", "KRW", "USD", "USD.P"]
+QUOTE_LITERAL = Literal["USDT", "USDT.P", "USDTPERP", "BUSD", "BUSD.P", "BUSDPERP", "KRW", "USD", "USD.P", "ES1!", "MES1!"]
 
 SIDE_LITERAL = Literal["buy", "sell", "entry/buy", "entry/sell", "close/buy", "close/sell"]
 
@@ -59,6 +63,8 @@ STOCK_EXCHANGES = (
     "NASDAQ",
     "NYSE",
     "AMEX",
+    "CME",
+    "CME_MINI",
 )
 
 COST_BASED_ORDER_EXCHANGES = ("UPBIT", "BYBIT", "BITGET")
@@ -69,6 +75,8 @@ NO_ORDER_AMOUNT_OUTPUT_EXCHANGES = (
     "NASDAQ",
     "NYSE",
     "AMEX",
+    "CME",
+    "CME_MINI",
 )
 
 # "BITGET", "KRX", "NASDAQ", "AMEX", "NYSE")
