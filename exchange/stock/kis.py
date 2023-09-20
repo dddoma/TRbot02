@@ -16,7 +16,7 @@ class KoreaInvestment:
         self.key = key
         self.secret = secret
         self.kis_number = kis_number
-        self.base_url = BaseUrls.base_url.value if kis_number != 4 else BaseUrls.paper_base_url.value
+        self.base_url = BaseUrls.base_url.value
         self.is_auth = False
         self.account_number = account_number
         self.base_headers = {}
