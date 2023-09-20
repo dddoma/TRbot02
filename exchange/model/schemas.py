@@ -15,7 +15,7 @@ STOCK_LITERAL = Literal[
     "AMEX",
     "CME",
     "CME_MINI",
-    "BATS"
+    "BATS",
 ]
 
 
@@ -67,6 +67,7 @@ STOCK_EXCHANGES = (
     "AMEX",
     "CME",
     "CME_MINI",
+    "BATS",
 )
 
 COST_BASED_ORDER_EXCHANGES = ("UPBIT", "BYBIT", "BITGET")
@@ -79,6 +80,7 @@ NO_ORDER_AMOUNT_OUTPUT_EXCHANGES = (
     "AMEX",
     "CME",
     "CME_MINI",
+    "BATS",
 )
 
 # "BITGET", "KRX", "NASDAQ", "AMEX", "NYSE")
@@ -191,7 +193,7 @@ def parse_quote(quote: str):
 
 class OrderRequest(BaseModel):
     exchange: EXCHANGE_LITERAL
-    base: str
+    base: str | None = None
     quote: QUOTE_LITERAL
     # QUOTE
     type: Literal["market", "limit"] = "market"
@@ -273,7 +275,7 @@ class MarketOrder(OrderBase):
 
 class PriceRequest(BaseModel):
     exchange: EXCHANGE_LITERAL
-    base: str
+    base: str | None = None
     quote: QUOTE_LITERAL
     is_crypto: bool | None = None
     is_stock: bool | None = None
@@ -299,7 +301,7 @@ class PriceRequest(BaseModel):
 
 class Position(BaseModel):
     exchange: EXCHANGE_LITERAL
-    base: str
+    base: str | None = None
     quote: QUOTE_LITERAL
     side: Literal["long", "short"]
     amount: float
@@ -310,7 +312,7 @@ class Position(BaseModel):
 class HedgeData(BaseModel):
     password: str
     exchange: Literal["BINANCE"]
-    base: str
+    base: str | None = None
     quote: QUOTE_LITERAL = "USDT.P"
     amount: float | None = None
     leverage: int | None = None
