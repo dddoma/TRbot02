@@ -3,7 +3,7 @@ from typing import Literal
 from pydantic import BaseModel
 
 korea_stocks = ("KRX")
-us_stocks = ("NASDAQ", "NYSE", "AMEX")
+us_stocks = ("NASDAQ", "NYSE", "AMEX", "CME", "CME_MINI", "BATS")
 
 
 class BaseUrls(str, Enum):
