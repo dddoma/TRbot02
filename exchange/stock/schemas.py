@@ -3,7 +3,8 @@ from typing import Literal
 from pydantic import BaseModel
 
 korea_stocks = ("KRX")
-us_stocks = ("NASDAQ", "NYSE", "AMEX", "CME", "CME_MINI", "BATS")
+us_stocks = ("NASDAQ", "NYSE", "AMEX", "BATS")
+ovs_futures = ("CME", "CME_MINI")
 
 
 class BaseUrls(str, Enum):
@@ -16,9 +17,9 @@ class BaseHeaders(BaseModel):
     appkey: str
     appsecret: str
     custtype: str = "P"
+    
     # tr_id: str = Literal[TransactionId.korea_buy, TransactionId.korea_sell, TransactionId.korea_paper_buy, TransactionId.korea_paper_sell,
     #  TransactionId.korea_paper_cancel, TransactionId.usa_buy, TransactionId.usa_sell, TransactionId.usa_paper_buy, TransactionId.usa_paper_sell]
-
 
 class Endpoints(str, Enum):
     korea_order_base = "/uapi/domestic-stock/v1"
@@ -28,13 +29,18 @@ class Endpoints(str, Enum):
     usa_order_base = "/uapi/overseas-stock/v1"
     usa_order = f"{usa_order_base}/trading/order"
     usa_order_buyable = f"{usa_order_base}/trading/inquire-psamount"
-    usa_current_price = f"/uapi/overseas-price/v1/quotations/price"
+    usa_current_price = f"/uapi/overseas-price/v1/quotations/price" #해외주식 현재체결가
 
+    ovs_order_base = "/uapi/overseas-futureoption/v1"
+    ovs_order = f"{ovs_order_base}/trading/order"
+    ovs_order_buyable = f"{ovs_order_base}/trading/inquire-psamount"
+    ovs_current_price = f"/uapi/overseas-futureoption/v1/quotations/inquire-price" #해외선물종목 현재가
+    
     korea_ticker = "/uapi/domestic-stock/v1/quotations/inquire-price"
     usa_ticker = "/uapi/overseas-price/v1/quotations/price"
+    ovs_ticker = "/uapi/overseas-futureoption/v1/quotations/inquire-price"
 
-
-class TransactionId(str, Enum):
+class TransactionId(str, Enum):       #tr_id
 
     korea_buy = "TTTC0802U"
     korea_sell = "TTTC0801U"
@@ -49,8 +55,12 @@ class TransactionId(str, Enum):
     usa_paper_buy = "VTTT1002U"
     usa_paper_sell = "VTTT1001U"
 
+    ovs_buy = "OTFM3001U"
+    ovs_sell = "OTFM3001U"
+
     korea_ticker = "FHKST01010100"
     usa_ticker = "HHDFS00000300"
+    ovs_ticker = "HHDFC55010000"
 
 
 class KoreaTickerQuery(BaseModel):
