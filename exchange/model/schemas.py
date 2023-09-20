@@ -15,6 +15,7 @@ STOCK_LITERAL = Literal[
     "AMEX",
     "CME",
     "CME_MINI",
+    "BATS"
 ]
 
 
