@@ -26,7 +26,14 @@ class KoreaInvestment:
 
         self.base_body = {}
         self.base_order_body = AccountInfo(CANO=account_number, ACNT_PRDT_CD=account_code)
-        self.order_exchange_code = {"NASDAQ": ExchangeCode.NASDAQ, "NYSE": ExchangeCode.NYSE, "AMEX": ExchangeCode.AMEX}
+        self.order_exchange_code = {
+            "NASDAQ": ExchangeCode.NASDAQ, 
+            "NYSE": ExchangeCode.NYSE, 
+            "AMEX": ExchangeCode.AMEX,
+            "CME": ExchangeCode.CME,
+            "CME_MINI": ExchangeCode.CME_MINI,
+            "BATS": ExchangeCode.BATS,   
+        }
         self.query_exchange_code = {
             "NASDAQ": QueryExchangeCode.NASDAQ,
             "NYSE": QueryExchangeCode.NYSE,
@@ -204,7 +211,7 @@ class KoreaInvestment:
             return self.create_order(exchange, ticker, "market", "buy", amount, price)
 
     def create_market_sell_order(
-        self, exchange: Literal["KRX", "NASDAQ", "NYSE", "AMEX"], ticker: str, amount: int, price: int = 0
+        self, exchange: Literal["KRX", "NASDAQ", "NYSE", "AMEX","CME", "CME_MINI", "BATS"], ticker: str, amount: int, price: int = 0
     ):
         if exchange == "KRX":
             return self.create_order(exchange, ticker, "market", "sell", amount)
@@ -225,7 +232,7 @@ class KoreaInvestment:
             endpoint = Endpoints.korea_ticker.value
             headers = KoreaTickerHeaders(**self.base_headers).dict()
             query = KoreaTickerQuery(FID_INPUT_ISCD=ticker).dict()
-        elif exchange in ("NASDAQ", "NYSE", "AMEX"):
+        elif exchange in ("NASDAQ", "NYSE", "AMEX", "CME", "CME_MINI", "BATS"):
             exchange_code = self.query_exchange_code.get(exchange)
             endpoint = Endpoints.usa_ticker.value
             headers = UsaTickerHeaders(**self.base_headers).dict()
@@ -237,7 +244,7 @@ class KoreaInvestment:
         try:
             if exchange == "KRX":
                 return float(self.fetch_ticker(exchange, ticker)["stck_prpr"])
-            elif exchange in ("NASDAQ", "NYSE", "AMEX"):
+            elif exchange in ("NASDAQ", "NYSE", "AMEX","CME", "CME_MINI", "BATS"):
                 return float(self.fetch_ticker(exchange, ticker)["last"])
 
         except KeyError:
