@@ -70,9 +70,8 @@ class KoreaTickerQuery(BaseModel):
 
 class UsaTickerQuery(BaseModel):
     AUTH: str = ""
-    EXCD: Literal["NYS", "NAS", "AMS"]
-    SYMB: str                           # 종목코드
-
+    EXCD: Literal["NYS", "NAS", "AMS"] #거래소코드
+    SYMB: str                           
 
 class ExchangeCode(str, Enum):
     NYSE = "NYSE"
