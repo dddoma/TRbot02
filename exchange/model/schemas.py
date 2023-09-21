@@ -34,7 +34,7 @@ EXCHANGE_LITERAL = Literal[
     "BATS"
 ]
 
-QUOTE_LITERAL = Literal["","USDT", "USDT.P", "USDTPERP", "BUSD", "BUSD.P", "BUSDPERP", "KRW", "USD", "USD.P", "ES1!", "MES1!"]
+QUOTE_LITERAL = Literal["","USDT", "USDT.P", "USDTPERP", "BUSD", "BUSD.P", "BUSDPERP", "KRW", "USD", "USD.P", "ES1!", "MES1!","AAPL"]
 
 SIDE_LITERAL = Literal["buy", "sell", "entry/buy", "entry/sell", "close/buy", "close/sell"]
 
